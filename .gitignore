@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Game Boy Camera processing folders
+_inbox/
+20*-*-*/
+
+# macOS
+.DS_Store
+
+# Claude AI
+.claude/
