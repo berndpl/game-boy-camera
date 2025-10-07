@@ -5,7 +5,7 @@ __pycache__/
 
 # Game Boy Camera processing folders
 _inbox/
-20*-*-*/
+_processed/
 
 # macOS
 .DS_Store

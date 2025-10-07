@@ -16,10 +16,10 @@ def create_contact_sheet_for_image(base_dir, image_name):
     """
     Create a contact sheet for a single image showing all palette variations
     """
-    # Calculate grid dimensions - use 3x3 grid
+    # Calculate grid dimensions dynamically based on number of palettes
     num_palettes = len(PALETTES)
-    cols = 3  # 3x3 grid layout
-    rows = 3
+    cols = 8  # 8 columns for better layout with many palettes
+    rows = (num_palettes + cols - 1) // cols  # Calculate rows needed
 
     # Load first image to get dimensions
     first_palette = list(PALETTES.keys())[0]
@@ -97,7 +97,7 @@ def create_all_contact_sheets(base_dir=None):
     # Get current date directory if not specified
     if base_dir is None:
         current_date = datetime.now().strftime("%Y-%m-%d")
-        base_dir = current_date
+        base_dir = f"_processed/{current_date}"
 
     if not os.path.exists(base_dir):
         print(f"No processed images found in {base_dir}/")
@@ -123,8 +123,10 @@ def create_all_contact_sheets(base_dir=None):
         print("No processed PNG files found")
         return
 
+    cols = 8
+    rows = (len(PALETTES) + cols - 1) // cols
     print(f"Creating contact sheets for {len(processed_images)} images...")
-    print(f"Grid: 3 columns × 3 rows")
+    print(f"Grid: {cols} columns × {rows} rows ({len(PALETTES)} palettes)")
     print()
 
     created_count = 0
@@ -141,7 +143,7 @@ def create_all_contact_sheets(base_dir=None):
     print()
     print(f"📋 Contact sheet generation complete!")
     print(f"📁 Saved {created_count} contact sheets to: {base_dir}/")
-    print(f"🎨 Each sheet shows {len(PALETTES)} palette variations in a 3×3 grid")
+    print(f"🎨 Each sheet shows {len(PALETTES)} palette variations in a {cols}×{rows} grid")
 
     return created_count
 

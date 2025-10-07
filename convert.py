@@ -110,9 +110,9 @@ def convert_gameboy_images():
         print("No _inbox folder found. Please create _inbox/ and add BMP files to process.")
         return None
 
-    # Create output directory with date
+    # Create output directory with date inside _processed folder
     current_date = datetime.now().strftime("%Y-%m-%d")
-    base_output_dir = current_date
+    base_output_dir = f"_processed/{current_date}"
 
     # Find all BMP files in _inbox
     bmp_files = glob.glob(f"{inbox_dir}/*.bmp")
